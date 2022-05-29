@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+
+import styles from './App.module.scss'
+
+import PostForm from "./components/Posts/PostForm";
+import PostList from "./components/Posts/PostList";
 
 function App() {
+  const [posts, setPosts] = useState([
+    {id: 1, title: 'Hello World', body: 'PHP'},
+    {id: 2, title: 'Interesting', body: 'Javascript'},
+    {id: 3, title: 'Wonderfull', body: 'React'}
+  ])
+
+  function removePost(post) {
+    setPosts(posts.filter(p => p.id !== post.id))
+  }
+
+  function createPost(newPost) {
+    setPosts([...posts, newPost])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.wrapper}>
+      <PostForm create={createPost} />
+      <PostList remove={removePost} posts={posts} title='Список постов'/>
     </div>
   );
 }
