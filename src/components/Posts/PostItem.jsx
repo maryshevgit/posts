@@ -4,7 +4,7 @@ import MyButton from '../UI/button/MyButton'
 const PostItem = ({post, number, remove}) => {
   return (
     <div>
-        {number+"."} {'Название: ' + post.title} {'Описание: ' + post.body} <MyButton onClick={() => remove(post)}>Удалить</MyButton>
+        {post.id+"."} {'Название: ' + post.title} {'Описание: ' + post.body} <MyButton onClick={() => remove(post)}>Удалить</MyButton>
     </div> 
   )
 }
